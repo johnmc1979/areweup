@@ -1,2 +1,245 @@
-<p>Hello World</p>
-<p>Hello World</p>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Swift Designs Hostiung Up Time Tester</title>
+	<meta name="robots" content="noindex,follow" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js" integrity="sha512-2AL/VEauKkZqQU9BHgnv48OhXcJPx9vdzxN1JrKDVc4FPU/MEE/BZ6d9l0mP7VmvLsjtYwqiYQpDskK9dG8KBA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<style>
+	body {
+		margin: 0;
+	}
+	.outer {
+		background: #232a31;
+		width: 100%;
+	}
+	.header {
+		background: #232a31;
+		display: flex;
+		width: 100%;
+		max-width: 1200px;
+		margin: auto;
+	}
+	.header img {
+	    max-height: 80px;
+	}
+	.menu {
+		width: 100%;
+	}
+	ul#menu-main-3 {
+	    float: right;
+	    display: flex;
+	    list-style: none;
+	    margin-top: 40px;
+	}
+	#menu-main-3 a {
+		color: #fff;
+		text-transform: uppercase;
+		text-decoration: none;
+	}
+	ul#menu-main-3 li {
+	    padding: 10px;
+	}
+	.responded {
+	    color:green;
+	}
+	.checking,.unchecked {
+	    color:#FF8C00;
+	}
+	.timeout {
+	    color:red;
+	}
+	.inner {
+	    width: 100%;
+	    max-width: 1080px;
+	    margin: auto;
+	    padding-bottom: 150px;
+	}
+
+	.site-footer {
+    color: #fff;
+}
+.footer-adv-overlay {
+    background-image: url(https://swiftdesigns.b-cdn.net/wp-content/uploads/2019/07/header-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.footer-adv .footer-adv-overlay {
+    border-top-style: solid;
+    border-top-color: #7a7a7a;
+}
+.footer-adv-overlay {
+    background-color: #3a3a3a;
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+@media (min-width: 769px){
+	.ast-container {
+	    max-width: 1210px;
+	}
+}
+.ast-container, .ast-container-fluid {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.ast-row {
+    margin-left: -20px;
+    margin-right: -20px;
+}
+@media (min-width: 992px){
+	.ast-row {
+	    display: flex;
+	}
+	.ast-col-lg-3 {
+	    width: 25%;
+	}
+}
+.widget {
+    margin: 0 0 2.8em 0;
+}
+.textwidget p, .textwidget a {
+	color: #fff;
+	text-decoration: none;
+}
+img.foot.alignnone.wp-image-797.size-full {
+    height: 50px;
+    width: auto;
+    background-color: #fff;
+    border-radius: 50%;
+}
+.ast-small-footer.footer-sml-layout-1 {
+    display: block;
+    background: #000;
+    padding: 20px;
+}
+.open-ticket a {
+    position: fixed;
+    bottom: 15px;
+    width: 150px;
+    background: #1e73be;
+    text-align: center;
+    padding: 10px;
+    text-transform: uppercase;
+    font-weight: 700;
+    left: calc(50% - 75px);
+    z-index: 9999;
+    border-radius: 5px;
+    transition: .3s;
+    border: 1px solid #fff;
+    color: #fff;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<div class="outer">
+			<div class="header">
+					<a href="https://swiftdesigns.com.au"><img src="https://swiftdesigns.b-cdn.net/wp-content/uploads/2019/07/imageedit_1_3508878655.png"></a>
+					<div class="menu">
+						<ul id="menu-main-3" class="main-menu">
+							<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://swiftdesigns.com.au/website-design-pricing-table/" class="item menu-link" data-hover="Design">Design</a></li>
+							<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://swiftdesigns.com.au/website-selection-tool/" class="item menu-link" data-hover="INSTANT WEBSITES">INSTANT WEBSITES</a></li>
+							<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://swiftdesigns.com.au/hosting-plans/" class="item menu-link" data-hover="Hosting Plans">Hosting Plans</a></li>
+							<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://swiftdesigns.com.au/managed-wordpress/" class="item menu-link" data-hover="WordPress Hosting">WordPress Hosting</a></li>
+							<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://swiftdesigns.com.au/support-packages/" class="item menu-link" data-hover="WP Support">WP Support</a></li>
+							<li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="https://client.swiftdesigns.com.au/cart.php?a=add&amp;domain=register" class="item menu-link" data-hover="Domains">Domains</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		<div class="inner">
+			
+			<br>
+			<h2>Is the hosting up?</h2>
+			<p>View the status of the hosting below</p>
+			<p><span style="color:green">Responded</span> = Yes, the hosting is up for that server.</p>
+			<p><span style="color:red">Timeout</span> = No, the hosting is down!</p>
+			<h4>HOSTING SERVERS</h4>
+			<ul data-bind="foreach:servers">
+			    <li> <a href="#" data-bind="text:name,attr:{href: 'http://'+name}">tester</a> <span data-bind="text:status,css:status"></span>
+
+			    </li>
+			</ul>
+		</div>
+
+
+
+<footer class="site-footer" id="colophon" itemtype="https://schema.org/WPFooter" itemscope="itemscope" itemid="#colophon"><div class="footer-adv footer-adv-layout-4"><div class="footer-adv-overlay"><div class="ast-container"><div class="ast-row"><div class="ast-col-lg-3 ast-col-md-3 ast-col-sm-12 ast-col-xs-12 footer-adv-widget footer-adv-widget-1"><div id="text-7" class="widget widget_text"><div class="textwidget"><p><img data-lazyloaded="1" data-placeholder-resp="300x108" src="https://swiftdesigns.com.au/wp-content/uploads/2018/08/logo-1.png.webp" loading="lazy" class="foot alignnone wp-image-797 size-full litespeed-loaded" data-src="https://swiftdesigns.com.au/wp-content/uploads/2018/08/logo-1.png.webp" alt="" width="300" height="108" data-was-processed="true"></p><p>Swift Designs</p><p>Casino, NSW, 2470</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p></div></div><div id="custom_html-7" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><div class="open-ticket">
+<a href="https://swiftdesigns.com.au/support/">Open ticket</a></div></div></div></div><div class="ast-col-lg-3 ast-col-md-3 ast-col-sm-12 ast-col-xs-12 footer-adv-widget footer-adv-widget-2"><div id="text-8" class="widget widget_text"><h2 class="widget-title">Our Company</h2><div class="textwidget"><ul class="nav"><li class=""><span class="dashicons dashicons-arrow-right-alt2"></span><a href="https://swiftdesigns.com.au/about/">About Us</a></li><li class=""><span class="dashicons dashicons-arrow-right-alt2"></span><a href="https://client.swiftdesigns.com.au/index.php">Products &amp; Pricing</a></li><li class=""><span class="dashicons dashicons-arrow-right-alt2"></span>ABN: 56817104943</li><li class=""><span class="dashicons dashicons-arrow-right-alt2"></span>Currency: AUD</li></ul></div></div></div><div class="ast-col-lg-3 ast-col-md-3 ast-col-sm-12 ast-col-xs-12 footer-adv-widget footer-adv-widget-3"><div id="text-9" class="widget widget_text"><h2 class="widget-title">Our Services</h2><div class="textwidget"><ul class="nav"><li class=""><span class="dashicons dashicons-arrow-right-alt2"></span><a href="https://swiftdesigns.com.au/hosting-plans/">Web Hosting</a></li><li class=""><a href="https://swiftdesigns.com.au/website-design-pricing-table/"><span class="dashicons dashicons-arrow-right-alt2"></span>Web Design</a></li><li class=""><a href="https://swiftdesigns.com.au/support-packages/"><span class="dashicons dashicons-arrow-right-alt2"></span>WordPress Support</a></li><li class="et-show-dropdown et-hover"><a href="https://swiftdesigns.com.au/hosting-uptime-guarantee/"><span class="dashicons dashicons-arrow-right-alt2"></span>Uptime Guarantee</a></li></ul></div></div></div><div class="ast-col-lg-3 ast-col-md-3 ast-col-sm-12 ast-col-xs-12 footer-adv-widget footer-adv-widget-4"><div id="text-10" class="widget widget_text"><h2 class="widget-title">Support</h2><div class="textwidget"><ul class="nav"><li class=""><span class="dashicons dashicons-arrow-right-alt2"></span><a href="https://swiftdesigns.com.au/contact-us/">Product Support</a></li><li class=""><a href="https://swiftdesigns.com.au/contact-us/"><span class="dashicons dashicons-arrow-right-alt2"></span>Contact Us</a></li><li class=""><a href="https://swiftdesigns.com.au/knowledge-base/"><span class="dashicons dashicons-arrow-right-alt2"></span>FAQs</a></li><li class=""><a href="https://swiftdesigns.com.au/privacy-policy/"><span class="dashicons dashicons-arrow-right-alt2"></span>Privacy Policy</a></li><li class="et-show-dropdown et-hover"><a href="https://swiftdesigns.com.au/terms-of-service/"><span class="dashicons dashicons-arrow-right-alt2"></span>Terms of Service</a></li></ul></div></div></div></div></div></div></div><div class="ast-small-footer footer-sml-layout-1"><div class="ast-footer-overlay"><div class="ast-container"><div class="ast-small-footer-wrap"><div class="ast-small-footer-section ast-small-footer-section-1">
+Copyright © 2021 <span class="ast-footer-site-title">Swift Designs</span> | Powered by Awesomeness</div></div></div></div></div></footer>
+
+
+
+
+
+
+
+	</container>
+</body>
+</html>
+
+
+
+
+
+<script type="text/javascript">
+	function ping(ip, callback) {
+
+    if (!this.inUse) {
+        this.status = 'unchecked';
+        this.inUse = true;
+        this.callback = callback;
+        this.ip = ip;
+        var _that = this;
+        this.img = new Image();
+        this.img.onload = function () {
+            _that.inUse = false;
+            _that.callback('responded');
+
+        };
+        this.img.onerror = function (e) {
+            if (_that.inUse) {
+                _that.inUse = false;
+                _that.callback('responded', e);
+            }
+
+        };
+        this.start = new Date().getTime();
+        this.img.src = "http://" + ip;
+        this.timer = setTimeout(function () {
+            if (_that.inUse) {
+                _that.inUse = false;
+                _that.callback('timeout');
+            }
+        }, 1500);
+    }
+}
+var PingModel = function (servers) {
+    var self = this;
+    var myServers = [];
+    ko.utils.arrayForEach(servers, function (location) {
+        myServers.push({
+            name: location,
+            status: ko.observable('unchecked')
+        });
+    });
+    self.servers = ko.observableArray(myServers);
+    ko.utils.arrayForEach(self.servers(), function (s) {
+        s.status('checking');
+        new ping(s.name, function (status, e) {
+            s.status(status);
+        });
+    });
+};
+var komodel = new PingModel([
+    'swiftdesigns.com.au',
+    'host1.swiftdesigns.com.au',
+    'host2.swiftdesigns.com.au',
+    'host3.swiftdesigns.com.au'
+    ]);
+ko.applyBindings(komodel);
+</script>
+
