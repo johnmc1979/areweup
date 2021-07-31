@@ -53,7 +53,7 @@
 	    color:red;
 	}
 	.inner {
-	    width: 100%;
+	    width: 95%;
 	    max-width: 1080px;
 	    margin: auto;
 	    padding-bottom: 150px;
@@ -203,6 +203,12 @@ img.mobile {
     font-size: 26px;
     font-weight: 700;
 }
+@media only screen and (max-width: 600px) {
+	.inner li {
+    font-size: 18px;
+    font-weight: 700;
+}
+}
 </style>
 </head>
 <body>
@@ -250,7 +256,7 @@ img.mobile {
 			<p><span style="color:red">Timeout</span> = No, the hosting is down!</p>
 			<h4>HOSTING SERVERS</h4>
 			<ul data-bind="foreach:servers">
-			    <li> <a href="#" data-bind="text:name,attr:{href: 'http://'+name}">tester</a> <span data-bind="text:status,css:status"></span> | retries: 
+			    <li> <a href="#" data-bind="text:name,attr:{href: 'http://'+name}">tester</a> <span data-bind="text:status,css:status"></span> | Tries: 
 			    <span data-bind="text:retry,css:status"></span>
 			    </li>
 			</ul>
@@ -283,7 +289,7 @@ Copyright © 2021 <span class="ast-footer-site-title">Swift Designs</span> | Pow
 
 
 <script type="text/javascript">
-	const TIMEOUT = 1500;
+	const TIMEOUT = 3500;
 let c = 0;
 
 function ping(ip, callback) {
@@ -343,7 +349,7 @@ var PingModel = function (servers) {
             if (status) callback(status, e);
             console.log(server.name, 'status')
 						if (status && status !== 'timeout') {debugger;
-            	if (server.retry() > 1) alertCallback(server.name);
+            	if (server.retry() > 10) alertCallback(server.name);
               
               return;
             }
