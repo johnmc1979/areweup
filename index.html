@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta charset="utf-8">
 	<title>Swift Designs Hostiung Up Time Tester</title>
 	<meta name="robots" content="noindex,follow" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js" integrity="sha512-2AL/VEauKkZqQU9BHgnv48OhXcJPx9vdzxN1JrKDVc4FPU/MEE/BZ6d9l0mP7VmvLsjtYwqiYQpDskK9dG8KBA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <style>
 	body {
@@ -131,13 +133,83 @@ img.foot.alignnone.wp-image-797.size-full {
     border: 1px solid #fff;
     color: #fff;
 }
+
+
+
+/* Style the navigation menu */
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+  position: relative;
+}
+
+/* Hide the links inside the navigation menu (except for logo/home) */
+.topnav #myLinks {
+  display: none;
+}
+
+/* Style navigation menu links */
+.topnav a {
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  display: block;
+}
+
+/* Style the hamburger menu */
+.topnav a.icon {
+
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+/* Add a grey background color on mouse-over */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Style the active link (or home/logo) */
+.active {
+  background-color: #04AA6D;
+  color: white;
+}
+@media only screen and (min-width: 769px){
+	.topnav {
+		display: none;
+	}
+}
+@media only screen and (max-width: 768px){
+	.topnav {
+		display: block;
+	}
+	.menu {
+		display: none;
+	}
+	img.desktop {
+		display: none;
+	}
+}
+.topnav {
+    width: 100%;
+}
+img.mobile {
+	max-height: 60px;
+}
+.inner li {
+    font-size: 26px;
+    font-weight: 700;
+}
 </style>
 </head>
 <body>
 	<div class="container">
 		<div class="outer">
 			<div class="header">
-					<a href="https://swiftdesigns.com.au"><img src="https://swiftdesigns.b-cdn.net/wp-content/uploads/2019/07/imageedit_1_3508878655.png"></a>
+					<a href="https://swiftdesigns.com.au"><img class="desktop" src="https://swiftdesigns.b-cdn.net/wp-content/uploads/2019/07/imageedit_1_3508878655.png"></a>
 					<div class="menu">
 						<ul id="menu-main-3" class="main-menu">
 							<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://swiftdesigns.com.au/website-design-pricing-table/" class="item menu-link" data-hover="Design">Design</a></li>
@@ -148,6 +220,25 @@ img.foot.alignnone.wp-image-797.size-full {
 							<li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="https://client.swiftdesigns.com.au/cart.php?a=add&amp;domain=register" class="item menu-link" data-hover="Domains">Domains</a></li>
 						</ul>
 					</div>
+
+					<!-- Top Navigation Menu -->
+					<div class="topnav">
+					  <a href="https://swiftdesigns.com.au"><img class="mobile" src="https://swiftdesigns.b-cdn.net/wp-content/uploads/2019/07/imageedit_1_3508878655.png"></a>
+					  <!-- Navigation links (hidden by default) -->
+					  <div id="myLinks">
+					    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://swiftdesigns.com.au/website-design-pricing-table/" class="item menu-link" data-hover="Design">Design</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://swiftdesigns.com.au/website-selection-tool/" class="item menu-link" data-hover="INSTANT WEBSITES">INSTANT WEBSITES</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://swiftdesigns.com.au/hosting-plans/" class="item menu-link" data-hover="Hosting Plans">Hosting Plans</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://swiftdesigns.com.au/managed-wordpress/" class="item menu-link" data-hover="WordPress Hosting">WordPress Hosting</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://swiftdesigns.com.au/support-packages/" class="item menu-link" data-hover="WP Support">WP Support</a></li>
+						<li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="https://client.swiftdesigns.com.au/cart.php?a=add&amp;domain=register" class="item menu-link" data-hover="Domains">Domains</a></li>
+					  </div>
+					  <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+					  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+					    <i class="fa fa-bars"></i>
+					  </a>
+					</div>
+
 				</div>
 			</div>
 		<div class="inner">
@@ -163,6 +254,12 @@ img.foot.alignnone.wp-image-797.size-full {
 
 			    </li>
 			</ul>
+			<p>Check the response against your hosting server</p>
+			<p>Example. If your website is on host1.swiftdesigns.com.au and it shows <span style="color:green">responded</span> then it means that the hosting account is up and running smoothly</p>
+			<p>If is shows <span style="color:red">timeout</span> then it means the hosting account may be down</p>
+			<p>If the response code shows that all servers are operating but you cannot access your website, you may be blocked by the firewall. Please open a support ticket with your IP address to allow us to remove the IP block</p>
+			<p>If the website displays another message such as internal server error or there has been a critical error on this website please contact your developer for assistance as this indicates a problem with the website</p>
+
 		</div>
 
 
@@ -241,5 +338,18 @@ var komodel = new PingModel([
     'host3.swiftdesigns.com.au'
     ]);
 ko.applyBindings(komodel);
-</script>
 
+
+
+
+
+/* Toggle between showing and hiding the navigation menu links when the user clicks on the hamburger menu / bar icon */
+function myFunction() {
+  var x = document.getElementById("myLinks");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
+</script>
